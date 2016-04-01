@@ -35,7 +35,7 @@
 
 
                 <i class="fa fa-thumbs-o-up"></i>
-                <a href="#">like</a>
+                <a href="#">likes</a>
                 <span>{{$idea->likes}}</span>
 
 
