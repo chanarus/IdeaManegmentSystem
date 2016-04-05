@@ -39,8 +39,8 @@ Route::group(['middleware'=>'web'], function(){
 
     Route::post('search', 'SearchController@search');
 
-    //Route::get('ideas/{id}', 'LikeController@addlike');
+    Route::get('ideas/{id}/likes', 'LikeController@addlike');
 
-    //Route::get('ideas/{id}', 'LikeController@adddislike');
+    Route::get('ideas/{id}/dislikes', 'LikeController@adddislike');
 
 });

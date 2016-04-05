@@ -7,8 +7,8 @@
 <div class="form-group">
     {!! Form::label('category', 'Category') !!}
     {!!  Form::select('category', ['General' => 'General',
-                              'Administration' => 'Administration',
-                              'Sport' => 'Sport'],null,
+                                   'Administration' => 'Administration',
+                                   'Sport' => 'Sport'],null,
                               ['class'=>'form-control']
 )   !!}
 </div>

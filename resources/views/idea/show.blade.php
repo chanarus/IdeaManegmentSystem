@@ -12,28 +12,35 @@
 
     <div class="well">
         <idea>
-            <!-- Display Idea title -->
-            <h2>{{$idea->title}}</h2>
+            <div class="row">
+                <div class="col-md-10">
+                    <!-- Display Idea title -->
+                    <h2 style="color:dodgerblue;font-weight: bold">{{$idea->title}}</h2>
 
-            <i class="fa fa-book fa-2x"></i>
+                    <i class="fa fa-book fa-2x"></i>
 
-            <!-- Display Idea category -->
-            <b style="font-size: x-large">Category : {{$idea->category}}</b>
-            <br>
+                    <!-- Display Idea category -->
+                    <b style="font-size: x-large">Category : {{$idea->category}}</b>
+                    <br>
 
-            <!-- Display Idea creator -->
-            <i class="fa fa-user"></i><span><b> {{$idea->user->name}}</b></span>
-            <br>
+                    <!-- Display Idea current ratings -->
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-empty"></i>
+                    <b> ratings : {{$idea->ratings}}</b>
+                    <br>
 
-            <!-- Display Idea current ratings -->
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-empty"></i>
-            <b> ratings : {{$idea->ratings}}</b>
-            <br>
+                    <!-- Display Idea published date or last edit date -->
+                    <i class="fa fa-clock-o"></i><b> Last Edit : {{$idea->updated_at->format('d-m-y')}}</b>
+                </div>
+                <div class="col-md-2">
+                    <!-- Display Idea creator -->
+                    <img src="{{ asset('images/user1.jpg') }}" class="img-circle"><br>
+                    <i class="fa fa-user"></i><span><b> {{$idea->user->name}}</b></span>
+                    <br>
+                </div>
+            </div>
 
-            <!-- Display Idea published date or last edit date -->
-            <i class="fa fa-clock-o"></i><b> Last Edit : {{$idea->updated_at->format('d-m-y')}}</b>
             <hr>
 
             <!-- Display Idea body -->
@@ -42,12 +49,12 @@
 
             <!-- Display Idea likes and dislike count -->
             <i class="fa fa-thumbs-o-up"></i>
-            <a href="#">like</a>
+            <a href="{{action('LikeController@addlike', [$idea->id])}}">like</a>
             <span>{{$idea->likes}}</span>
 
 
             <i class="fa fa-thumbs-o-down"></i>
-            <a href="#">dislike</a>
+            <a href="{{action('LikeController@adddislike', [$idea->id])}}">dislike</a>
             <span> {{$idea->dislikes}}</span>
             <br>
 
@@ -72,13 +79,18 @@
         </idea>
 
         <!-- Display Idea All Comments with the user it added -->
-        <h4>Comments</h4>
+        <h4><i class="fa fa-comments"></i> Comments</h4>
         <hr>
 
         @foreach($comments->comments as $comment)
 
-            <span style="color: #2e6da4">By {{ $comment->user->name }}</span>
-            <div>{{ $comment->body }}</div>
+            <span style="color: #2e6da4"><img src="{{ asset('images/user2.jpg') }}" class="img-circle">{{ $comment->user->name }}</span>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-8">
+                    <div>{{ $comment->body }}</div>
+                </div>
+            </div>
             <br>
 
         @endforeach

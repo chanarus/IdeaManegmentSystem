@@ -1,6 +1,9 @@
 @extends('masterpage')
 
+
 @section('content')
+
+
     <h2>My Ideas</h2>
     <br>
 
@@ -35,12 +38,12 @@
 
 
                 <i class="fa fa-thumbs-o-up"></i>
-                <a href="#">likes</a>
+                <a href="{{action('LikeController@addlike', [$idea->id])}}">like</a>
                 <span>{{$idea->likes}}</span>
 
 
                 <i class="fa fa-thumbs-o-down"></i>
-                <a href="#">dislike</a>
+                <a href="{{action('LikeController@adddislike', [$idea->id])}}">dislike</a>
                 <span> {{$idea->dislikes}}</span>
 
             </div>

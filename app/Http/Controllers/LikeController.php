@@ -16,12 +16,12 @@ class LikeController extends Controller
 
     }
 
-    /*public function adddislike($id)
+    public function adddislike($id)
     {
         DB::table('ideas')->where('id','=', '' . $id. '')->increment('dislikes');
         return back();
 
-    }*/
+    }
 
 
 }
