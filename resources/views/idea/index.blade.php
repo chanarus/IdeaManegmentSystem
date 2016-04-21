@@ -11,41 +11,45 @@
         <idea>
 
             <div class="well">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h3>
+                            Title :
+                            <a href="{{action('IdeaController@show', [$idea->id])}}">{{$idea->title}}</a>
+                        </h3>
 
-                <h3>
-                    Title :
-                    <a href="{{action('IdeaController@show', [$idea->id])}}">{{$idea->title}}</a>
-                </h3>
+                        <h4>
+                            Category : {{$idea->category}}
+                        </h4>
+                    </div>
 
-                <h4>
-                    Category : {{$idea->category}}
-                </h4>
+                    <div class="col-md-1" align="center">
+                        <i class="fa fa-star fa-2x" style="color: #2e6da4"></i>
+                        <i class="fa fa-star fa-2x" style="color: #2e6da4"></i>
+                        <i class="fa fa-star-half-empty fa-2x" style="color: #2e6da4"></i>
+                        <b> ratings<br> {{$idea->ratings}}</b>
+                    </div>
 
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-empty"></i>
-                <b> ratings : {{$idea->ratings}}</b>
+                    <div class="col-md-1" align="center">
+                        <a href="{{action('LikeController@addlike', [$idea->id])}}">
+                            <i class="fa fa-thumbs-up fa-4x" style="color: #2e6da4"></i>
+                        </a><br>
+                        <span style="font-weight:bold; font-size: 20px">{{$idea->likes}}</span>
+                    </div>
 
-                <hr>
+                    <div class="col-md-1" align="center">
+                        <a href="{{action('LikeController@adddislike', [$idea->id])}}">
+                            <i class="fa fa-thumbs-down fa-4x" style="color: #2e6da4"></i>
+                        </a><br>
+                        <span style="font-weight:bold; font-size: 20px"> {{$idea->dislikes}}</span>
+                    </div>
+                </div>
 
                 <div class="body">{{$idea->body}}
                     <a href="{{action('IdeaController@show', [$idea->id])}}">
                         view more...
                     </a>
                 </div>
-
-                <br>
-
-
-                <i class="fa fa-thumbs-o-up"></i>
-                <a href="{{action('LikeController@addlike', [$idea->id])}}">like</a>
-                <span>{{$idea->likes}}</span>
-
-
-                <i class="fa fa-thumbs-o-down"></i>
-                <a href="{{action('LikeController@adddislike', [$idea->id])}}">dislike</a>
-                <span> {{$idea->dislikes}}</span>
-
             </div>
 
         </idea>

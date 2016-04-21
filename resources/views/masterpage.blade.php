@@ -104,7 +104,9 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                                <a href="{{action('ProfileController@view',[Auth::user()->id])}}">
+                                    <i class="fa fa-fw fa-user"></i> Profile
+                                </a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
@@ -127,7 +129,9 @@
                         <a href="{{action('HomeController@home')}}"><i class="fa fa-fw fa-home"></i> Home</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo">
+                            <i class="fa fa-fw fa-arrows-v"></i> Filter <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
                         <ul id="demo" class="collapse">
                             <li>
                                 <a href="#Administration">Administration</a>
@@ -136,7 +140,7 @@
                                 <a href="#General">General</a>
                             </li>
                             <li>
-                                <a href="#Sport">Sport</h3></a>
+                                <a href="#Sport">Sport</a>
                             </li>
                         </ul>
                     </li>

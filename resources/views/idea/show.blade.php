@@ -10,7 +10,7 @@
         @endif
     </div>
 
-    <div class="well">
+    <div class="container">
         <idea>
             <div class="row">
                 <div class="col-md-10">

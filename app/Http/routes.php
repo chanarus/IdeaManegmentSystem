@@ -19,6 +19,8 @@ Route::group(['middleware'=>'web'], function(){
 
     Route::get('home', 'HomeController@home');
 
+
+
     Route::get('ideas', 'IdeaController@index');
 
     Route::get('ideas/create', 'IdeaController@create');
@@ -33,14 +35,28 @@ Route::group(['middleware'=>'web'], function(){
 
     Route::patch('ideas/{id}', 'IdeaController@update');
 
+
+
     Route::post('ideas/{id}', 'CommentControler@create');
+
+
 
     Route::get('search', 'SearchController@show');
 
     Route::post('search', 'SearchController@search');
 
+
+
     Route::get('ideas/{id}/likes', 'LikeController@addlike');
 
     Route::get('ideas/{id}/dislikes', 'LikeController@adddislike');
+
+
+
+    Route::get('profile/{id}', 'ProfileController@view');
+
+    //Route::get('profile/{id}/edit', 'ProfileController@edit');
+
+    Route::patch('profile/{id}', 'ProfileController@update');
 
 });

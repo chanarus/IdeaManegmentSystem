@@ -38,7 +38,7 @@
 </div>
 
 <div class="form-group">
-    {!! FOrm::submit($submitButtonName, ['class'=>'btn btn-primary']) !!}
+    {!! Form::submit($submitButtonName, ['class'=>'btn btn-primary']) !!}
 </div>
 
 
