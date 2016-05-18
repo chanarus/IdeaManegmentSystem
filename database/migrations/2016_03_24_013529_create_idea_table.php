@@ -21,7 +21,9 @@ class CreateIdeaTable extends Migration
             $table->Integer('likes');
             $table->Integer('user_id');
             $table->Integer('dislikes');
-            $table->text('image');
+            $table->string('idea_image1');
+            $table->string('idea_image2');
+            $table->string('idea_image3');
             $table->timestamps('published_at');
 
         });

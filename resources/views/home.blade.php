@@ -49,7 +49,7 @@
                 <div class="well">
                   <div class="row">
                     <div class="col-md-4">
-                      <img src="{{ asset('images/user1.jpg') }}" class="img-circle"><br>{{ $idea->user->name }}
+                        <image src="{{ asset($idea->user->prof_pic) }}" width="60px" height="60px"></image><br>{{ $idea->user->name }}
                     </div>
                     <div class="col-md-8">
                       <h3>

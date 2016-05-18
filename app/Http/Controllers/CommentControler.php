@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CommentControler extends Controller
 {
@@ -27,11 +28,33 @@ class CommentControler extends Controller
         $notification->cmt_user_id = Auth::user()->id;
         $notification->status = "pending";
 
-        $i = new Idea();
-        return $i->user_id;
 
         $notification->save();
 
+        return back();
+    }
+
+    public function show()
+    {
+        $uid = Auth::user()->id;
+        $comments = DB::table('comments')->where('user_id','=', $uid)->get();
+        return view('comment.view', compact('comments'));
+    }
+
+
+    public function update($id, Request $request)
+    {
+        $cmnt = Comment::FindOrFail($id);
+        alert()->success('update', 'update')->persistent('ok');
+        $cmnt->update($request->all());
+        return back();
+    }
+
+    public function delete($id)
+    {
+        $cmnt = Comment::FindOrFail($id);
+        alert()->message('delete', 'delete')->persistent('ok');
+        $cmnt->delete();
         return back();
     }
 }

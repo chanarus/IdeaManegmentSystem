@@ -11,11 +11,17 @@
 
     <title>CURTIN UNIVERSITY</title>
 
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{ asset('bootstrap/css/sb-admin.css') }}" rel="stylesheet">
+
+    <!-- SweetAlert CSS -->
+    <link href="{{ asset('bootstrap/css/sweetalert.css') }}" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="{{ asset('bootstrap/css/plugins/morris.css') }}" rel="stylesheet">
@@ -99,6 +105,7 @@
                     <!-- User Details -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <image src="{{ asset(Auth::user()->prof_pic) }}" width="30px" height="30px"></image>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
@@ -112,7 +119,9 @@
                                 <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                                <a href="{{action('ProfileController@password',[Auth::user()->id])}}">
+                                    <i class="fa fa-fw fa-gear"></i> Settings
+                                </a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -141,6 +150,9 @@
                             </li>
                             <li>
                                 <a href="#Sport">Sport</a>
+                            </li>
+                            <li>
+                                <a href="#Academic">Academic</a>
                             </li>
                         </ul>
                     </li>
@@ -177,6 +189,9 @@
 
     <!-- jQuery -->
     <script src="{{ asset('bootstrap/js/jquery.js') }}"></script>
+
+    <!-- Sweet Alert -->
+    <script src="{{asset('js/sweetalert.min.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>

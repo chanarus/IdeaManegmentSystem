@@ -29,6 +29,8 @@ Route::group(['middleware'=>'web'], function(){
 
     Route::post('ideas', 'IdeaController@store');
 
+    //Route::post('ideas/{pic}', 'IdeaController@picture');
+
     Route::get('ideas/{id}/edit', 'IdeaController@edit');
 
     Route::delete('ideas/{id}', 'IdeaController@delete');
@@ -37,13 +39,9 @@ Route::group(['middleware'=>'web'], function(){
 
 
 
-    Route::post('ideas/{id}', 'CommentControler@create');
-
-
-
     Route::get('search', 'SearchController@show');
 
-    Route::post('search', 'SearchController@search');
+    Route::post('search/executeSearch', 'SearchController@executeSearch');
 
 
 
@@ -55,8 +53,23 @@ Route::group(['middleware'=>'web'], function(){
 
     Route::get('profile/{id}', 'ProfileController@view');
 
-    //Route::get('profile/{id}/edit', 'ProfileController@edit');
-
     Route::patch('profile/{id}', 'ProfileController@update');
+
+    Route::post('profile/{pic}', 'ProfileController@picture');
+
+    Route::get('profile/{id}/setting', 'ProfileController@password');
+
+    Route::post('profile', 'ProfileController@setting');
+
+
+    Route::get('comment', 'CommentControler@show');
+
+    Route::delete('comment/{id}', 'CommentControler@delete');
+
+    Route::patch('comment/{id}', 'CommentControler@update');
+
+    Route::post('ideas/{id}', 'CommentControler@create');
+
+
 
 });

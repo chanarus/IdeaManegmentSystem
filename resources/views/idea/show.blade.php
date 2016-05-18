@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-md-2">
                     <!-- Display Idea creator -->
-                    <img src="{{ asset('images/user1.jpg') }}" class="img-circle"><br>
+                    <img src="{{ asset($idea->user->prof_pic) }}" width="100px" height="100px" class="img-circle"><br>
                     <i class="fa fa-user"></i><span><b> {{$idea->user->name}}</b></span>
                     <br>
                 </div>
@@ -46,6 +46,20 @@
             <!-- Display Idea body -->
             <div class="body">{{$idea->body}}</div>
             <br>
+            <hr>
+            <div class="row">
+                <h3>Images</h3>
+                <div class="col-md-4">
+                    <img src="{{asset($idea->idea_image1)}}">
+                </div>
+                <div class="col-md-4">
+                    <img src="{{asset($idea->idea_image2)}}">
+                </div>
+                <div class="col-md-4">
+                    <img src="{{asset($idea->idea_image3)}}">
+                </div>
+            </div>
+            <br><br>
 
             <!-- Display Idea likes and dislike count -->
             <i class="fa fa-thumbs-o-up"></i>
@@ -74,6 +88,11 @@
                 ]) !!}
                 {!! Form::submit('Delete this Idea?', ['class' => 'btn btn-danger','fa fa-trash']) !!}
                 {!! Form::close() !!}
+
+                <script src="js/sweetalert.min.js"></script>
+
+                <!-- Include this after the sweet alert js file -->
+                @include('sweet::alert')
             </div>
 
         </idea>
@@ -84,16 +103,13 @@
 
         @foreach($comments->comments as $comment)
 
-            <span style="color: #2e6da4"><img src="{{ asset('images/user2.jpg') }}" class="img-circle">{{ $comment->user->name }}</span>
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-8">
-                    <div>{{ $comment->body }}</div>
-                </div>
-            </div>
-            <br>
+            <img src="{{ asset($comment->user->prof_pic) }}" width="60px" height="60px">
+            <span style="color: #2e6da4">{{ $comment->user->name }}</span><span> {{ $comment->body }}</span>
 
+            <br><br>
         @endforeach
+
+
          <hr>
 
         <!-- Add Comment -->

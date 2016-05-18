@@ -67,6 +67,31 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-md-4 control-label">Status</label>
+
+                            <div class="col-md-6">
+                                <select name="status" class="form-control">
+                                    <option value="Student">Student</option>
+                                    <option value="Lecturer">Lecturer</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Faculty</label>
+
+                            <div class="col-md-6">
+                                <select name="faculty" class="form-control">
+                                    <option value="IT">IT</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="Business Management">Business Management</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i>Register

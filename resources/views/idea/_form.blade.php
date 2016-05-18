@@ -7,6 +7,7 @@
 <div class="form-group">
     {!! Form::label('category', 'Category') !!}
     {!!  Form::select('category', ['General' => 'General',
+                                    'Academic' => 'Academic',
                                    'Administration' => 'Administration',
                                    'Sport' => 'Sport'],null,
                               ['class'=>'form-control']
@@ -19,11 +20,6 @@
     {!! Form::textarea('body', null, ['class'=>'form-control'] )!!}
 </div>
 
-<!-- Idea images input -->
-<div class="form-group">
-    {!! Form::label('image', 'Images') !!}
-    {!! Form::file('image', null, ['class'=>'form-control'] )!!}
-</div>
 
 <!-- Idea files input -->
 <div class="form-group">

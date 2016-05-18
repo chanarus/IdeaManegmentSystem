@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class SearchController extends Controller
 {
@@ -20,12 +23,13 @@ class SearchController extends Controller
         return view('idea.search');
     }
 
-    public function index(){
+    public function index()
+    {
 
         $count = 0;
         $results = NULL;
 
-        return view('search.results' , compact('count','results'));
+        return view('search.results', compact('count', 'results'));
     }
 
     public function search(Request $request)
@@ -35,44 +39,42 @@ class SearchController extends Controller
         $keyword = $request->input('keyword');
 
 
-
         if ($keyword != '') {
 
-            if ($sort == 'Date' || $sort == null)
-            {
+            if ($sort == 'Date' || $sort == null) {
                 $sort = 'created_at';
-            }
-            elseif ($sort == 'Rating')
-            {
-                $sort='ratings';
+            } elseif ($sort == 'Rating') {
+                $sort = 'ratings';
             }
 
 
             $results = DB::table('ideas')->where([
-                                                 ['title', 'like', '%' . $keyword . '%'],
-                                                 ['category','like', '%' . $cat. '%']
-                                                 ])->orderBy(''.$sort.'')->get();
+                ['title', 'like', '%' . $keyword . '%'],
+                ['category', 'like', '%' . $cat . '%']
+            ])->orderBy('' . $sort . '')->get();
             $count = count(DB::table('ideas')->where([
                 ['title', 'like', '%' . $keyword . '%'],
-                ['category','like', '%' . $cat. '%']
-            ])->orderBy(''.$sort.'')->get());
+                ['category', 'like', '%' . $cat . '%']
+            ])->orderBy('' . $sort . '')->get());
 
-            return view('idea.result', compact('results','count'));
-        }
-        else
-        {
-            if ($sort == 'Date' || $sort == null)
-            {
+            return view('idea.result', compact('results', 'count'));
+        } else {
+            if ($sort == 'Date' || $sort == null) {
                 $sort = 'created_at';
+            } elseif ($sort == 'Rating') {
+                $sort = 'ratings';
             }
-            elseif ($sort == 'Rating')
-            {
-                $sort='ratings';
-            }
-            $results = DB::table('ideas')->where('category','like', '%' . $cat. '%')->orderBy(''.$sort.'')->get();
-            $count = count(DB::table('ideas')->where('category','like', '%' . $cat. '%')->orderBy(''.$sort.'')->get());
-            return view('idea.result', compact('results','count'));
+            $results = DB::table('ideas')->where('category', 'like', '%' . $cat . '%')->orderBy('' . $sort . '')->get();
+            $count = count(DB::table('ideas')->where('category', 'like', '%' . $cat . '%')->orderBy('' . $sort . '')->get());
+            return compact('results', 'count');
         }
+    }
+
+    public function executeSearch(Request $request)
+    {
+        $keywords = $request->input('keywords'); //Input::get('keywords');
+
+        return $results = DB::table('ideas')->where('title', 'like', '%' . $keywords . '%')->get();
     }
 
 

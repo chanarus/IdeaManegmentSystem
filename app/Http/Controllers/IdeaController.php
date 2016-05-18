@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\IdeaRequest;
 use App\Idea;
 
@@ -10,7 +11,11 @@ use App\Idea;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Intervention\Image\Facades\Image;
 use Session;
+use UxWeb\SweetAlert\SweetAlert;
 
 
 class IdeaController extends Controller
@@ -82,7 +87,10 @@ class IdeaController extends Controller
         $idea->user_id = Auth::user()->id;
         $idea->dislikes = 0;
 
+
+
         $idea->save();
+        alert()->success('You have Successfully added an Idea', 'Idea Added')->persistent("Ok");
         return redirect('ideas');
     }
 
@@ -123,6 +131,7 @@ class IdeaController extends Controller
     {
         $idea = Idea::FindOrFail($id);
         $idea->update($request->all());
+        alert()->success('You have Update the Idea', 'Idea Updated')->persistent("Ok");
         return redirect('ideas');
     }
 
@@ -138,8 +147,14 @@ class IdeaController extends Controller
         $idea = Idea::find($id);
         if($uid == $idea->user_id)
         {
+
             $idea->delete();
             return redirect('ideas');
+        }
+        elseif($uid == '2')
+        {
+            $idea->delete();
+            return redirect('home');
         }
         else
         {
@@ -148,6 +163,36 @@ class IdeaController extends Controller
         }
 
 
+    }
+
+    /**
+     * Insert images to the idea
+     * @return mixed
+     */
+    public function picture()
+    {
+        $idea = Idea::find(Input::get('id'));
+        $image1 = Input::file('idea_image1');
+        $image2 = Input::file('idea_image2');
+        $image3 = Input::file('idea_image3');
+        $filename1 = time() . "-" . $image1->getClientOriginalExtension();
+        $filename2 = time() . "-" . $image2->getClientOriginalExtension();
+        $filename3 = time() . "-" . $image3->getClientOriginalExtension();
+        $path1 = public_path('idea_image1/' . $filename1);
+        $path2 = public_path('idea_image2/' . $filename2);
+        $path3 = public_path('idea_image3/' . $filename3);
+        Image::make($image1->getRealPath())->resize(300,300)->save($path1);
+        Image::make($image2->getRealPath())->resize(300,300)->save($path2);
+        Image::make($image3->getRealPath())->resize(300,300)->save($path3);
+
+        $idea->idea_image1 = 'idea_image1/' . $filename1;
+        $idea->idea_image2 = 'idea_image2/' . $filename2;
+        $idea->idea_image3 = 'idea_image3/' . $filename3;
+
+        $idea->save();
+
+        alert()->success('You have Successfully added images to the Idea', 'Images Added')->persistent("Ok");
+        return Redirect::back();
     }
 
 
