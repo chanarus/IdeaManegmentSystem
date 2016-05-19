@@ -44,6 +44,9 @@ Route::group(['middleware'=>'web'], function(){
     Route::post('search/executeSearch', 'SearchController@executeSearch');
 
 
+    Route::get('notification', 'NotificationController@update');
+
+
 
     Route::get('ideas/{id}/likes', 'LikeController@addlike');
 

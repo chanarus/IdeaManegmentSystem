@@ -3,11 +3,12 @@
 @section('content')
 
 
-   <!--
+   <!--<form method="post" action="{{url('/search') }}">
+        {{ csrf_field() }}
         <div class="search-label uppercase">Search By</div>
         <div class="input-icon right">
             <i class="icon-magnifier"></i>
-            <input type="text" class="form-control" placeholder="Search by title" name='keyword' onclick="this.value=''" value="
+            <input type="text" class="form-control" placeholder="Search by title" name='keyword' onclick="this.value=''" value="<?php echo isset($_GET['keyword']) ? $_GET['keyword'] : '' ?>">
         </div>
         <br>
         <div class="row">
@@ -61,10 +62,11 @@
     <div class="form-group">
         <input type="text" id="search-input" class="form-control" placeholder="Search" onkeydown="down()" onkeyup="up('{{ csrf_token() }}');">
     </div>
-    <div class="col-lg-12" id="search-result">
 
-    </div>
 </div>
+   <div class="col-lg-12" id="search-result">
+
+   </div>
 
 <script src="{{ asset('bootstrap/js/jquery.js') }}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>

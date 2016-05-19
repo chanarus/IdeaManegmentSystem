@@ -34,8 +34,9 @@ class IdeaController extends Controller
     {
         $uid = Auth::user()->id;
         $ideas = DB::table('ideas')->where('user_id','=', '' . $uid. '')->latest('updated_at')->get();
+        $notification = DB::table('notifications')->where('status', 'like', 'pending')->get();
 
-        return view('idea.index', compact('ideas'));
+        return view('idea.index', compact('ideas','notification'));
     }
 
 
@@ -54,8 +55,9 @@ class IdeaController extends Controller
         $comments = Idea::find($id);
 
         $comments->load('comments.user');
+        $notification = DB::table('notifications')->where('status', 'like', 'pending')->get();
 
-        return view('idea.show', compact('idea','comments'));
+        return view('idea.show', compact('idea','comments','notification'));
     }
 
 
@@ -66,7 +68,8 @@ class IdeaController extends Controller
      */
     public function create()
     {
-        return view('idea.create');
+        $notification = DB::table('notifications')->where('status', 'like', 'pending')->get();
+        return view('idea.create',compact('notification'));
     }
 
 

@@ -22,7 +22,7 @@ function up(token) {
 
                     var tempHtml= "Result Count " + result.length + "<br><br><table class='table table-hover'>" +
                         "<tr> <th width='400px'>"+"Idea Title"+"</th>"+
-                        "<th width='800px'>"+"Idea Category"+"</th>"+
+                        "<th width='400px'>"+"Idea Category"+"</th>"+
                         "<th width='600px'>"+"Idea"+"</th>";
 
                     for(i = 0; i< result.length; i++){

@@ -38,7 +38,8 @@ class CommentControler extends Controller
     {
         $uid = Auth::user()->id;
         $comments = DB::table('comments')->where('user_id','=', $uid)->get();
-        return view('comment.view', compact('comments'));
+        $notification = DB::table('notifications')->where('status', 'like', 'pending')->get();
+        return view('comment.view', compact('comments','notification'));
     }
 
 

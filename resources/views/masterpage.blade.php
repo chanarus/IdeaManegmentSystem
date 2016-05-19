@@ -87,20 +87,28 @@
                             </li>
                         </ul>
                     </li>
+                            @if($notification != NULL)
 
                     <!-- Notifications-->
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                        <ul class="dropdown-menu alert-dropdown">
-                            <li>
-                                <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">View All</a>
-                            </li>
-                        </ul>
+                        <a href="{{action('NotificationController@update')}}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+
+                                <ul class="dropdown-menu alert-dropdown">
+                                    @foreach($notification as $n)
+                                    <li>
+                                        <a href="#">{{$n->id}}<span class="label label-default">{{$n->status}}</span></a>
+                                    </li>
+                                    @endforeach
+                                    <li class="divider"></li>
+
+                                    <li>
+                                        <a href="#">View All</a>
+                                    </li>
+                                </ul>
+
                     </li>
+
+                            @endif
 
                     <!-- User Details -->
                     <li class="dropdown">
@@ -189,6 +197,7 @@
 
     <!-- jQuery -->
     <script src="{{ asset('bootstrap/js/jquery.js') }}"></script>
+    <script src="{{ asset('js/notification.js') }}"></script>
 
     <!-- Sweet Alert -->
     <script src="{{asset('js/sweetalert.min.js')}}"></script>

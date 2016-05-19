@@ -27,11 +27,12 @@ class ProfileController extends Controller
 
         $ideacount = count(DB::table('ideas')->where('user_id','=', $uid)->get());
         $commencount = count(DB::table('comments')->where('user_id','=', $uid)->get());
+        $notification = DB::table('notifications')->where('status', 'like', 'pending')->get();
 
 
         if($uid == $id)
         {
-            return view('profile.view', compact('user_details','ideacount','commencount'));
+            return view('profile.view', compact('user_details','ideacount','commencount','notification'));
         }
 
         return view('auth.login');
